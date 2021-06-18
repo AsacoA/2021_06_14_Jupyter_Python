@@ -11,3 +11,10 @@ def oneMulN(end):   #1부터 N까지의 곱을 구해주는 함수
     for i in range(end):
         total *= i+1
     return total
+
+if __name__ == '__main__':
+    print('math 모듈 실행')
+    print(__name__)
+
+print('math 모듈 실행')
+print(__name__)
