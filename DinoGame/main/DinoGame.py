@@ -17,8 +17,8 @@ fps = pygame.time.Clock()
 dino_img1 = pygame.image.load('../res/img/dino1.png')
 dino_img2 = pygame.image.load('../res/img/dino2.png')
 
-pygame.display.set_caption(TITLE)
-pygame.display.set_icon(dino_img1)
+# pygame.display.set_caption(TITLE)
+# pygame.display.set_icon(dino_img1)
 
 # 공룡 위치
 
@@ -33,25 +33,29 @@ is_go_up = False
 
 # 게임 루프
 while True:
+    screen.fill((255, 255, 255))
+    screen.blit(dino_img1, (dino_x, dino_y))
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-    #공룡 움직이기
+            print('here')
             if is_bottom:
                 is_go_up = True # 올라가는 모드 True
                 is_bottom = False   # 바닥에 붙어있는지를 판단
-    if is_go_up: dino_y -= 10
-    elif not is_go_up and not is_bottom: dino_y += 10
+
+    #공룡 움직이기
+    if is_go_up: dino_y -= 10.0
+    elif not is_go_up and not is_bottom: dino_y += 10.0
 
     if is_go_up and dino_y <= JUMP_UPTO: is_go_up = False
 
     if not is_bottom and dino_y >= dino_at_bottom:
         is_bottom = True
         dino_y = dino_at_bottom
-        screen.fill((255, 255, 255))
-        screen.blit(dino_img1, (dino_x, dino_y))
-        pygame.display.update()
 
+    pygame.display.update()
+    fps.tick(30)
 ####################################################################################################
