@@ -50,11 +50,12 @@ while True:
     if is_go_up:
         dino_y -= 8.0
         if dino_y <= JUMP_UPTO: is_go_up = False
-    elif not is_bottom: dino_y += 8.0
-
-    if not is_bottom and dino_y >= dino_at_bottom:
-        is_bottom = True
-        dino_y = dino_at_bottom
+    else:
+        if not is_bottom:
+            dino_y += 8.0
+            if dino_y >= dino_at_bottom:
+                is_bottom = True
+                dino_y = dino_at_bottom
 
     # if is_go_up: dino_y -= 10.0
     # elif not is_go_up and not is_bottom:
