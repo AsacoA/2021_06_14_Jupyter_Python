@@ -17,8 +17,8 @@ fps = pygame.time.Clock()
 dino_img1 = pygame.image.load('../res/img/dino1.png')
 dino_img2 = pygame.image.load('../res/img/dino2.png')
 
-# pygame.display.set_caption(TITLE)
-# pygame.display.set_icon(dino_img1)
+pygame.display.set_caption(TITLE)
+pygame.display.set_icon(dino_img1)
 
 # 공룡 위치
 
@@ -26,7 +26,7 @@ dino_height = dino_img1.get_size()[1]
 dino_x = 50
 dino_y = MAX_HEIGHT - dino_height
 JUMP_UPTO = 200
-dino_at_bottom = MAX_HEIGHT - dino_height   # dino가 맨 아래에 [있을
+dino_at_bottom = MAX_HEIGHT - dino_height
 
 is_bottom = True
 is_go_up = False
@@ -46,16 +46,26 @@ while True:
                 is_go_up = True # 올라가는 모드 True
                 is_bottom = False   # 바닥에 붙어있는지를 판단
 
-    #공룡 움직이기
-    if is_go_up: dino_y -= 10.0
-    elif not is_go_up and not is_bottom: dino_y += 10.0
-
-    if is_go_up and dino_y <= JUMP_UPTO: is_go_up = False
+    # 공룡 움직이기
+    if is_go_up:
+        dino_y -= 8.0
+        if dino_y <= JUMP_UPTO:
+            is_go_up = False
+    elif not is_bottom:
+        dino_y += 8.0
 
     if not is_bottom and dino_y >= dino_at_bottom:
         is_bottom = True
         dino_y = dino_at_bottom
 
+    # if is_go_up: dino_y -= 10.0
+    # elif not is_go_up and not is_bottom:
+    #     dino_y += 10.0
+    #
+    # if is_go_up and dino_y <= JUMP_UPTO: is_go_up = False
+    #
+    # if not is_bottom and dino_y >= dino_at_bottom:
+    #     is_bottom = True
+    #     dino_y = dino_at_bottom
     pygame.display.update()
-    fps.tick(30)
-####################################################################################################
+    fps.tick(60)
